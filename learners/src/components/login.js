@@ -11,10 +11,28 @@ function Login() {
 
     const responseSuccessGoogle = (response) => {
         // Code for successful login
+        // console.log(response);
+        var name = response.profileObj.name;
+        var mail = response.profileObj.email;
+        var profile_picture = response.profileObj.imageUrl;
+        var role = "student";
+        localStorage.setItem("profileName", name);
+        localStorage.setItem("profileEmail", mail);
+        localStorage.setItem("profilePicture", profile_picture);
+        if (role === "student") {
+            // Call the next component
+
+        }
+        else if (role === "mentor") {
+            // Call mentors component
+        }
+
+
     }
 
     const responseFailedGoogle = (response) => {
         // Code for failure login
+        // console.log(response);
     }
 
     return (
