@@ -5,7 +5,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
-function login(){
+function Login(){
     return (
         <div class="container-fluid">
             <div class="row">
@@ -55,3 +55,4 @@ function login(){
         </div>
     );
 }
+export default Login;
