@@ -1,4 +1,5 @@
-
+import quote from '../images/quote.jpg';
+import logo from '../images/logo.png';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
@@ -11,6 +12,7 @@ function Login(){
             <div class="row">
                 <div class="col-md-1"> 
                  {/* add logo here */}
+                 <img src={logo} width="100" /> 
                  </div>
                 <div class="col-md-10">
                     <center>
@@ -28,6 +30,7 @@ function Login(){
                     <div class="card-border-0" style={{ backgroundcolor: 'white' }}>
                         <center><div class="card-body">
                             {/* add quote of the day image */}
+                            <img src={quote} class="img-thumbnail" alt="quote" />
                         </div></center>
                     </div>
                 </div>
