@@ -7,7 +7,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function Login(){
     return (
-        <div class="container-fluid">
+        <div class="container-fluid" style={{ fontfamily: 'Georgia', fontsize: 35 }}>
             <div class="row">
                 <div class="col-md-1"> 
                  {/* add logo here */}
@@ -20,12 +20,12 @@ function Login(){
             <div class="row">
                 <div class="col-md-6">
 
-                    <div class="card-border-0 fs-1">
-                        <center><div class="card-body quote">
+                    <div class="card-border-0 fs-1" style={{ backgroundcolor: 'white', }}>
+                        <center><div class="card-body quote" style={{ fontfamily: 'Georgia' }}>
                             QUOTE OF THE DAY
                     </div></center>
                     </div>
-                    <div class="card-border-0">
+                    <div class="card-border-0" style={{ backgroundcolor: 'white' }}>
                         <center><div class="card-body">
                             {/* add quote of the day image */}
                         </div></center>
@@ -37,7 +37,7 @@ function Login(){
                         </div>
                     <div class="row mt-5"></div>
                     <div class="row mt-5">
-                        <div class="card-border-0">
+                        <div class="card-border-0" style={{ backgroundcolor: 'white' }}>
                             <center>
                                 <div class="card-body">
                                     <div class="btn-group">
