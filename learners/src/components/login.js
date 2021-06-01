@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 import './App.css';
+import Display from "./display";
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -21,13 +23,12 @@ function Login() {
         localStorage.setItem("profilePicture", profile_picture);
         if (role === "student") {
             // Call the next component
-
+            ReactDOM.render(<Display name={name} />, document.getElementById("root"));
         }
         else if (role === "mentor") {
             // Call mentors component
+            ReactDOM.render(<Display name={name} />, document.getElementById("root"));
         }
-
-
     }
 
     const responseFailedGoogle = (response) => {
@@ -93,4 +94,5 @@ function Login() {
         </div>
     );
 }
+
 export default Login;
