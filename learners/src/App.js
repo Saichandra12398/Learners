@@ -1,8 +1,9 @@
 import logo from './logo.svg';
+import Login from "./components/login";
 import './App.css';
 
 function App() {
-  return ;
+  return <Login />;
 }
 
 export default App;
