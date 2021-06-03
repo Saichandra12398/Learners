@@ -1,3 +1,6 @@
+// This is for displaying the deatils after the login 
+// Created by Nikhil on 1-6-2021
+import React from 'react';
 class Display extends React.Component {
     render() {
       return (
