@@ -1,47 +1,54 @@
+// File created by @author Pratyusha on 01-06-2021
+// Styles and bootstrap added by @author Ashish
+// Images added by @author Sireesha
+
 import quote from '../images/quote.jpg';
 import logo from '../images/logo.png';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
-import './App.css';
+import '../App.css';
 import Display from "./display";
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
-function Login() {
 
+function Login() { 
+    // Code for successful login
+    // google response function @author Sai Chandra
     const responseSuccessGoogle = (response) => {
-        // Code for successful login
         // console.log(response);
-        var name = response.profileObj.name;
-        var mail = response.profileObj.email;
-        var profile_picture = response.profileObj.imageUrl;
+        var user_name = response.profileObj.name;
+        var user_mail = response.profileObj.email;
+        var user_profile_picture = response.profileObj.imageUrl;
         var role = "student";
-        localStorage.setItem("profileName", name);
-        localStorage.setItem("profileEmail", mail);
-        localStorage.setItem("profilePicture", profile_picture);
+        localStorage.setItem("profileName", user_name);
+        localStorage.setItem("profileEmail", user_mail);
+        localStorage.setItem("profilePicture", user_profile_picture);
         if (role === "student") {
-            // Call the next component
-            ReactDOM.render(<Display name={name} />, document.getElementById("root"));
+            // Call the student component
+            ReactDOM.render(<Display name={user_name} />, document.getElementById("root"));
         }
         else if (role === "mentor") {
             // Call mentors component
-            ReactDOM.render(<Display name={name} />, document.getElementById("root"));
+            ReactDOM.render(<Display name={user_name} />, document.getElementById("root"));
         }
     }
 
+    // Code for failure login
+    // google response function @author Sai Chandra
     const responseFailedGoogle = (response) => {
-        // Code for failure login
         // console.log(response);
     }
+
 
     return (
         <div class="container-fluid" style={{ fontfamily: 'Georgia', fontsize: 35 }}>
             <div class="row">
                 <div class="col-md-1">
                     {/* add logo here */}
-                    <img src={logo} width="100" />
+                    <img src={logo} width="100" alt="logo"/>
                 </div>
                 <div class="col-md-10">
                     <center>
@@ -76,6 +83,7 @@ function Login() {
 
                                         <div class="first mt-5 ml-5" >
                                             {/* add google signin button */}
+                                            {/* login @author Sri Charan */}
                                             <GoogleLogin
                                                 clientId="268233039012-fnmuiq5has4vsi7ftttqlcj16ms204t7.apps.googleusercontent.com"
                                                 buttonText="Login with google"
