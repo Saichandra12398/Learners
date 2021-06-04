@@ -6,26 +6,34 @@
 
 import React from 'react';
 import Logs from "./logs";
+import Profile from "./profile";
+import logo from '../images/msit.jpg';
+import ReactDOM from 'react-dom';
+import { Dropdown } from 'react-bootstrap';
 class Display extends React.Component {
+   // Initializing variables in the constructor
   constructor() {
     super();
     this.state = {
-      list: []
+      list: [],
+      profile_Picture:""
     }
   }
-
+ // After loading the page this component will be called
   componentDidMount() {
     var cnt = localStorage.getItem("list1");
     var parsed1 = JSON.parse(cnt);
+    var picture = localStorage.getItem("profilePicture");
+
     if (cnt != null) {
-      this.setState({ list: [...parsed1] });
+      this.setState({ list: [...parsed1],profile_Picture:picture });
     }   
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("list1", JSON.stringify(this.state.list));
     });
   }
 
-
+// Functions which are triggerd when a button is clicked by the user
   itworkshow = (event) => {
     var s = event.target.value;
     const timestamp = Date.now();
@@ -96,10 +104,15 @@ class Display extends React.Component {
     const timestamp = Date.now();
     this.setState({ list: [...this.state.list, { task: s, timestamp: new Intl.DateTimeFormat('en-UK', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp) }] });
   }
+  
   action = (event) => {
     var s = event.target.value;
     const timestamp = Date.now();
-    this.setState({ list: [...this.state.list, { task: s, timestamp: new Intl.DateTimeFormat('en-UK', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp) }] });
+    this.setState({ list: [...this.state.list, { task: s, timestamp: new Intl.DateTimeFormat('en-UK', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp) }] },this.profile);
+  }
+  profile = () => {
+    localStorage.setItem("list1", JSON.stringify(this.state.list));
+    ReactDOM.render(<Profile />, document.querySelector("#root"));
   }
   action2 = (event) => {
     var s = event.target.value;
@@ -111,6 +124,7 @@ class Display extends React.Component {
     const timestamp = Date.now();
     this.setState({ list: [...this.state.list, { task: s, timestamp: new Intl.DateTimeFormat('en-UK', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp) }] });
   }
+  // Function to call new component
   redirect = () => {
     localStorage.setItem("list1", JSON.stringify(this.state.list));
     ReactDOM.render(<Logs />, document.querySelector("#root"));
@@ -131,7 +145,7 @@ class Display extends React.Component {
       <div className="container-fluid">
         <div className="row" style={{ backgroundColor: 'black', color: 'white' }}>
           <div className="col-md-3 pt-3">
-            <center><img src={msit} alt="MSIT" /></center>
+            <center><img src={logo} alt="MSIT" /></center>
           </div>
           <div className="col-md-6 pt-4">
             <center>
@@ -146,13 +160,13 @@ class Display extends React.Component {
           <div className="col-md-1">
             <center><Dropdown>
               <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                <center><img src={this.props.pic} alt="Student photo" width="80" style={{ borderRadius: '50%' }} />
+                <center><img src={this.state.profile_Picture} alt="Student photo" width="80" style={{ borderRadius: '50%' }} />
                 </center>
 
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item><center><button type="button" class="btn btn-light" onClick={this.action} value="Action">Action</button></center></Dropdown.Item>
+                <Dropdown.Item><center><button type="button" class="btn btn-light" onClick={this.action} value="Action">Profile</button></center></Dropdown.Item>
                 <Dropdown.Item><center><button type="button" class="btn btn-light" onClick={this.action2} value="Action2">Another action</button></center></Dropdown.Item>
                 <Dropdown.Item><center><button type="button" class="btn btn-light" onClick={this.something} value="something">Something else</button></center></Dropdown.Item>
               </Dropdown.Menu>
