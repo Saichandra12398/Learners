@@ -6,7 +6,7 @@
 // Displaying log activity by @author Sireesha
 import React from 'react';
 class Logs extends React.Component {
-
+// Initializing variables in the constructor
     constructor() {
         super();
         this.state = {
@@ -16,6 +16,7 @@ class Logs extends React.Component {
             li: []
         }
     }
+    // After loading the page this component will be called
     componentDidMount() {
         var jsonResult = localStorage.getItem("list1");
         var parsed = JSON.parse(jsonResult);
@@ -30,6 +31,7 @@ class Logs extends React.Component {
     }
     render() {
         return (
+            // Displaying the log activity along with the time stamp
             <div class="container-fluid">
                 <div class="row mt-5">
                     <div class="col-md-11">
