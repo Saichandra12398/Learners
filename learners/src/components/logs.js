@@ -6,7 +6,8 @@
 // Displaying log activity by @author Sireesha
 // import React from 'react';
 import React, { useMemo } from 'react'
-import { useTable, usePagination } from 'react-table'
+import { useTable, usePagination, useSortBy, useGlobalFilter} from 'react-table'
+import { GlobalFilter } from './GlobalFilter'
 // import MOCK from './MOCK_DATA.json'
 import { COLUMNS } from './columns'
 import '../styles/table.css'
@@ -26,12 +27,19 @@ const Logs = () => {
         previousPage,
         canNextPage,
         canPreviousPage,
+        state,
+        setGlobalFilter,
+
         prepareRow,
     } = useTable({
         columns,
         data,
     },
+    useGlobalFilter,
+        useSortBy,
+
         usePagination)
+        const { globalFilter } = state
 
     return (
         <>
@@ -40,6 +48,9 @@ const Logs = () => {
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <br />
+                        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+                        <br /><br />
+
                         <center>
                             <table {...getTableProps()}>
                                 <thead>
@@ -49,10 +60,13 @@ const Logs = () => {
                                             <tr {...headerGroup.getHeaderGroupProps()}>
                                                 {
                                                     headerGroup.headers.map((column) => (
-                                                        <th {...column.getHeaderProps()}>{column.render('Header')}
-                                                            
+                                                        <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+                                                            <span>
+                                                                {column.isSorted ? (column.isSortedDesc ? ' descending ' : ' ascending') : ''}
+                                                            </span>
 
                                                         </th>
+
                                                     ))
                                                 }
 
