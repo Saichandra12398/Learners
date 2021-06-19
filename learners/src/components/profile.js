@@ -4,6 +4,15 @@
 // Styles and bootstrap by @author Ashish
 // Constructor and componentDidMount by @author Nikhil 
 // Displaying log Summary by @author Sireesha
+//Updating profile page to add pagenation on 19/06/2021
+//By : @author Saichandra
+
+
+import React, { useMemo } from 'react'
+import { useTable, usePagination} from 'react-table'
+import { COLUMNS } from './profilecolumns'
+import '../styles/table.css'
+
 import React from 'react';
 class Profile extends React.Component {
     // Initializing variables in the constructor
