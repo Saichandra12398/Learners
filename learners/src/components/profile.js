@@ -5,7 +5,7 @@
 // Constructor and componentDidMount by @author Nikhil 
 // Displaying log Summary by @author Sireesha
 //Updating profile page to add pagenation on 19/06/2021
-//By : @author Saichandra
+//By : @author Saichandra - Added image, email, name, table structure
 
 
 import React, { useMemo } from 'react'
