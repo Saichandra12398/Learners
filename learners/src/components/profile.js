@@ -13,6 +13,135 @@ import { useTable, usePagination} from 'react-table'
 import { COLUMNS } from './profilecolumns'
 import '../styles/table.css'
 
+const Profile = () => {
+  var jsonResult = localStorage.getItem("list1");
+      var parsed = JSON.parse(jsonResult);
+      var di = {}  
+      var li = []  
+      for (var i=0;i<parsed.length;i++) {
+        var element = parsed[i].task;
+        if(element in di){
+          di[element]+=1;
+        }
+        else{
+          di[element]=1;
+        }
+      }
+      for (const [key, val] of Object.entries(di)){
+        li = [...li,{"task":key,"count":val}]
+      }
+  var name = localStorage.getItem("profileName")
+  var email = localStorage.getItem("profileEmail")
+  var picture = localStorage.getItem("profilePicture")
+  var MOCK = li
+  const columns = useMemo(() => COLUMNS, [])
+  const data = useMemo(() => MOCK, [])
+  const { getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    state,
+    prepareRow,
+    } = useTable({
+        columns,
+        data,
+    }, usePagination)
+
+    return (
+      <>
+          <div class="container">
+          <div class="row mt-5">
+            <div class="col-md-11">
+              <h1 style={{ fontFamily: 'fantasy' }}> Name- {name}</h1>
+              <h1 style={{ fontFamily: 'fantasy' }}> Email-{email}</h1>
+            </div>
+            <div class="col-md-1">
+              <img
+                src={picture}
+                alt=""
+                width="80"
+                style={{ borderRadius: '50%' }}
+              />
+            </div>
+          </div>
+              <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                      <br />
+                      
+                      <center>
+                          <table {...getTableProps()}>
+                              <thead>
+                                  {
+                                      headerGroups.map((headerGroup) => (
+
+                                          <tr {...headerGroup.getHeaderGroupProps()}>
+                                              {
+                                                  headerGroup.headers.map((column) => (
+                                                      <th {...column.getHeaderProps()}>{column.render('Header')}
+                                                          
+
+                                                      </th>
+                                                  ))
+                                              }
+
+                                          </tr>
+                                      ))}
+                              </thead>
+
+                              <tbody {...getTableBodyProps()}>
+                                  {
+                                      page.map(row => {
+                                          prepareRow(row)
+                                          return (
+                                              <tr {...row.getRowProps()}>
+                                                  {
+                                                      row.cells.map((cell) => {
+
+                                                          return (
+
+                                                              <td {...cell.getCellProps()}>
+                                                                  <center>{cell.render('Cell')}</center>
+
+                                                              </td>
+                                                          )
+                                                      })
+                                                  }
+                                              </tr>
+                                          )
+                                      })
+                                  }
+
+                              </tbody>
+                          </table>
+                          <div>
+                              
+                              <button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous
+
+                              </button>
+                              <button onClick={() => nextPage()} disabled={!canNextPage}>Next
+                              </button>
+                          </div>
+                      </center>
+                  </div>
+                  <div class="col-md-3"></div>
+              </div>
+          </div>
+      </>
+
+  )
+
+}
+
+
+
+
+
+
 import React from 'react';
 class Profile extends React.Component {
     // Initializing variables in the constructor
@@ -48,20 +177,7 @@ class Profile extends React.Component {
     //   Displaying the Log summary and user profile
       return ( 
          <div class="container-fluid">
-          <div class="row mt-5">
-            <div class="col-md-11">
-              <h1 style={{ fontFamily: 'fantasy' }}> Name- {this.state.name}</h1>
-              <h1 style={{ fontFamily: 'fantasy' }}> Email-{this.state.emailid}</h1>
-            </div>
-            <div class="col-md-1">
-              <img
-                src={this.state.profilepic}
-                alt=""
-                width="80"
-                style={{ borderRadius: '50%' }}
-              />
-            </div>
-          </div>
+          
           <div class="row"> 
             <div class="col-3"></div>
             <div class="col-6">
