@@ -8,13 +8,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 import '../App.css';
+import bg from '../images/bg.jpeg';
 import Display from "./display";
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 
-function Login() { 
+function Login() {
     // Code for successful login
     // google response function @author Sai Chandra
     const responseSuccessGoogle = (response) => {
@@ -44,11 +45,11 @@ function Login() {
 
 
     return (
-        <div class="container-fluid" style={{ fontfamily: 'Georgia', fontsize: 35 }}>
+        <div class="container-fluid" style={{ fontfamily: 'Georgia', fontsize: 35, backgroundImage: `url(${bg})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <div class="row">
                 <div class="col-md-1">
                     {/* add logo here */}
-                    <img src={logo} width="100" alt="logo"/>
+                    <img src={logo} width="100" alt="logo" />
                 </div>
                 <div class="col-md-10">
                     <center>
@@ -61,7 +62,7 @@ function Login() {
                     <div class="card-border-0 fs-1" style={{ backgroundcolor: 'white', }}>
                         <center><div class="card-body quote" style={{ fontfamily: 'Georgia' }}>
                             QUOTE OF THE DAY
-                    </div></center>
+                        </div></center>
                     </div>
                     <div class="card-border-0" style={{ backgroundcolor: 'white' }}>
                         <center><div class="card-body">
